@@ -1,0 +1,162 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Person {
+protected:
+    string FullName;
+    string DayMonthYear;
+    double Height;
+    double Weight;
+    bool Gender;
+    string PhoneNumber;
+    string Email;
+public:
+    Person() {
+        FullName = "NONE";
+        DayMonthYear = "NONE";
+        Height = 0;
+        Weight = 0;
+        Gender = 1;
+        PhoneNumber = "NONE";
+        Email = "NONE";
+    }
+    Person(string FullName, string DayMonthYear, double Height, double Weight, bool Gender, string PhoneNumber, string Email) {
+        this->FullName = FullName;
+        this->DayMonthYear = DayMonthYear;
+        this->Height = Height;
+        this->Weight = Weight;
+        this->Gender = Gender;
+        this->PhoneNumber = PhoneNumber;
+        Email = Email;    
+        Error(Weight, Height);
+
+    }
+    bool Error(double Weight, double Height) {
+      
+      if (Weight >= 23 and Weight <= 400) {
+        throw invalid_argument("Weight is 0ver the range");
+      }
+      else{
+        return 1;
+      }
+      if(Height >= 50 and Height<=290){
+        throw  invalid_argument("Height is over the range");
+      }
+      else {
+        return 1;
+      }
+    }
+    friend bool IsWeight(double Weight){
+        return Weight > 80;  
+    }
+    friend bool IsHeight(double Heihgt){
+        return Height > 150;
+    }
+     void changeEmail(string NewEmail) {
+         cin >> NewEmail;
+         Email = NewEmail;
+     }
+     void changePhoneNum(string NewPhone) {
+         cin >> NewPhone;
+         PhoneNumber = NewPhone;
+     }
+     friend ostream& operator<<(ostream& Os, Person & person){
+      cout << "Name: " << person.FullName << "\n";
+      cout << "Date of birth: "<< person.DayMonthYear << "\n";
+      cout << "Height: " << person.Height << "\n";
+      cout << "Weight: " << person.Weight << "\n";
+      cout << "Gender: " << person.Gender << "\n";
+      cout << "Phone number: " << person.PhoneNumber << "\n";
+      cout << "Email: " << person.Email << "\n";
+      IsWeight(Weight);
+      IsHeight(Height);
+     return Os;
+     }
+};
+class Teacher : public Person{
+  private:
+    int Experience;
+    string Category;
+    int Salary;
+  public:
+    Teacher() : Person(){
+      Experience = 0;
+      Category = "NONE";
+      Salary = 0;
+    }
+    Teacher(string FullName, string DayMonthYear, double Height, double Weight, bool Gender, string PhoneNumber, string Email, int Experience, string Category, int Salary) : Person( FullName, DayMonthYear, Height, Weight, Gender, PhoneNumber, Email) {
+      this-> Experience = Experience;
+      this-> Category = Category;
+      this-> Salary = Salary;
+
+    }
+    void SalaryCounting(){
+      int CountingValue = 0;
+      CountingValue = Salary + int(1) + Experience;
+      //return 0;
+      cout << CountingValue;
+    }
+    int  VacationCounting(int NumberOfDays){
+      int ValueVacation = 0;
+      ValueVacation = (Salary/(NumberOfDays*30));
+      return ValueVacation;
+    }
+    friend ostream& operator<<(ostream& Os, Teacher & teacher){
+      cout << "Experience: " << teacher.Experience << "\n";
+      cout << "Category: "<< teacher.Category << "\n";
+      cout << "Salary: " << teacher.Salary << "\n";
+      return Os;
+    }
+};
+class Performer : public Person{
+  private:
+    string Genre;
+    int QuantityOfPerfomances;
+  public:
+    Performer() : Person(){
+      Genre = "NONE";
+      QuantityOfPerfomances = 0;
+    }
+    Performer(string FullName, string DayMonthYear, double Height, double Weight, bool Gender, string PhoneNumber, string Email, string Genre, int QuantityOfPerfomances) : Person( FullName, DayMonthYear, Height, Weight, Gender, PhoneNumber, Email) {
+      this-> Genre = Genre;
+      this-> QuantityOfPerfomances = QuantityOfPerfomances;
+    }
+    void AddPerfomance(const int PerfomanceValue = 1){
+      QuantityOfPerfomances += PerfomanceValue;
+    }
+    void ChangeGenre(string AddGenre){
+      cin >> AddGenre;
+      Genre = AddGenre;
+    }
+    friend ostream& operator<<(ostream& Os, Performer & performer){
+      cout << "Genre: " << performer.Genre << "\n";
+      cout << "Quantity of perfomances: "<< performer.QuantityOfPerfomances << "\n";
+     return Os;
+    }
+};
+
+  void ReturnTheSupremeTeachersSalary(vector<Teacher> TeachersDynamicArray){
+    int SupremeSalaryFinder = 0;
+    /*for (int i = 0; i < TeachersDynamicArray.size(); i++){
+      if (){
+
+      }
+    }*/
+    sort(TeachersDynamicArray.begin(),TeachersDynamicArray.end(), TeachersDynamicArray.Salary());
+  }
+  void StreamlineTheTeachersExperience(vector<Teacher> TeachersDynamicArray){
+
+  }
+  void CoutPerfomancersOfTackingGener(vector<Performer> PerformersDynamicArray, string ChoosenGener){
+
+  }
+  void AddPerfomance(vector<Performer> PerformersDynamicArray){
+
+  }
+int main(){
+  cout << "Stan's Plan";
+  return 0 ;
+}
